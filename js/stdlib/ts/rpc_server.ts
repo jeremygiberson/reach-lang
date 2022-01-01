@@ -1,4 +1,5 @@
 import spdy from 'spdy';
+import cors from 'cors';
 import { randomBytes              } from 'crypto';
 import { readFileSync, existsSync } from 'fs';
 import { resolve                  } from 'path';
@@ -372,6 +373,7 @@ export const serveRpc = async (backend: any) => {
     res.status(200).json({ deleted: req.body });
   });
 
+  app.use(cors());
   app.use(withApiKey());
   app.use(express.json());
 
